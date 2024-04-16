@@ -6,17 +6,18 @@ import java.sql.SQLException;
 
 public class DataBaseManager {
 	
-	 	public String jdbcURL = "jdbc:mysql://localhost:3308/employee_db";
-	    public String jdbcUserName = "root";
-	    public String jdbcPassword = "";
-	    public String jdbcDriver = "com.mysql.cj.jdbc.Driver";
+	 	public static String jdbcURL = "jdbc:mysql://localhost:3308/hotel";
+	    public static String jdbcUserName = "root";
+	    public static String jdbcPassword = "";
+	    public static String jdbcDriver = "com.mysql.cj.jdbc.Driver";
 
 	    
-	    protected Connection getConnection() {
+	    protected static Connection getConnection() {
 	        Connection connection = null;
 	        try {
 	            Class.forName(jdbcDriver);
 	            connection = DriverManager.getConnection(jdbcURL, jdbcUserName, jdbcPassword);
+	            System.out.println("Connexion réussie à la base de données !");
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        } catch (ClassNotFoundException e) {
@@ -24,4 +25,5 @@ public class DataBaseManager {
 	        }
 	        return connection;
 	    }
+
 }

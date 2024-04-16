@@ -1,5 +1,10 @@
 package com.hotel.DAO;
 
-public interface ProjetDAO {
+import java.util.List;
 
+import com.hotel.modal.Room;
+
+public interface ProjetDAO {
+	
+	 List<Room> selectAllRom();
 }
