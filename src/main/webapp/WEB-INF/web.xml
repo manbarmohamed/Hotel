@@ -18,4 +18,13 @@
     <servlet-name>RoomServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>ReservationServlet</servlet-name>
+  	<servlet-class>com.hotel.servlet.ReservationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservationServlet</servlet-name>
+    <url-pattern>/res</url-pattern>
+  </servlet-mapping>
 </web-app>

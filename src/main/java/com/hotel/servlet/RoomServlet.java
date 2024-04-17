@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hotel.DAO.RoomDAO;
+import com.hotel.DAO.RoomDAOImp;
 import com.hotel.modal.Room;
 
 
@@ -22,13 +22,13 @@ public class RoomServlet extends HttpServlet {
    
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/Room.jsp").forward(request, response);
-	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    RoomDAO roomDAO = new RoomDAO();
-	    List<Room> rooms = roomDAO.selectAllRom();
+		RoomDAOImp roomDAOImp = new RoomDAOImp();
+	    List<Room> rooms = roomDAOImp.selectAllRom();
 	    request.setAttribute("listrooms", rooms); 
 	    request.getRequestDispatcher("/Room.jsp").forward(request, response);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/Room.jsp").forward(request, response);
 	}
 
 
