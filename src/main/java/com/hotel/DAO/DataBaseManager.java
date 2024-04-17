@@ -17,7 +17,7 @@ public class DataBaseManager {
 	        try {
 	            Class.forName(jdbcDriver);
 	            connection = DriverManager.getConnection(jdbcURL, jdbcUserName, jdbcPassword);
-	            System.out.println("Connexion réussie à la base de données !");
+	           
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        } catch (ClassNotFoundException e) {

@@ -1,5 +1,11 @@
 package com.hotel.DAO;
 
-public class ReservationDAO {
+import java.util.List;
 
+import com.hotel.modal.Reservation;
+
+
+public interface ReservationDAO {
+
+	List<Reservation> selectAllReservation();
 }
