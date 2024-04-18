@@ -12,8 +12,11 @@ import com.hotel.modal.Room;
 
 public class ReservationDAOImp implements ReservationDAO{
 	
+	private RoomDAO roomdao;
+	
 	String SELECT_RESERVATION_SQL="select * from reservation";
 	String SAVE_RESERVATION="INSERT INTO reservation (id_reservation, roomId, startDate, endDate) VALUES (?, ?, ?, ?)"; 
+	String CANCEL_RESERVATION ="DELETE FROM reservation WHERE id_reservation=?";
 
 	@Override
 	public List<Reservation> selectAllReservation() {
@@ -30,6 +33,7 @@ public class ReservationDAOImp implements ReservationDAO{
 					String endDate = rs.getString("endDate").toString();
 					
 					reservations.add(new Reservation(id_res,id_rom,startDate,endDate));
+					
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -46,6 +50,13 @@ public class ReservationDAOImp implements ReservationDAO{
 		ps.setString(3, reservation.getStartDate());
 		ps.setString(4, reservation.getEndDate());
 		ps.executeUpdate();
+		roomdao = new RoomDAOImp();
+		roomdao.isReserved(reservation.getRoomId());
+		
+	}
+
+	@Override
+	public void cancelReservation(int id) throws SQLException {
 		
 		
 	}

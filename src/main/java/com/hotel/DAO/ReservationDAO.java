@@ -10,4 +10,5 @@ public interface ReservationDAO {
 
 	List<Reservation> selectAllReservation();
 	public void saveReservation(Reservation reservation) throws SQLException;
+	public void cancelReservation(int id) throws SQLException;
 }

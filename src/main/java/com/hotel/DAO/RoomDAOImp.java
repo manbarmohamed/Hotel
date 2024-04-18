@@ -3,18 +3,23 @@ package com.hotel.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.hotel.modal.Room;
 
 public class RoomDAOImp implements RoomDAO {
+	
+	String SELECT_ALL_ROOMS_AVAILABL= "select * from room";
+	String UPDATE_AVAILABILITY_ROOM="UPDATE room SET availability = false WHERE id_room = ?";
+	
 	@Override
 	public List<Room> selectAllRom() {
 		List<Room> rooms = new ArrayList<>();
 		try {
 			Connection cnx = DataBaseManager.getConnection();
-			PreparedStatement ps= cnx.prepareStatement("select * from room");
+			PreparedStatement ps= cnx.prepareStatement(SELECT_ALL_ROOMS_AVAILABL);
 			ResultSet rs= ps.executeQuery();
 			
 			while(rs.next()) {
@@ -33,9 +38,12 @@ public class RoomDAOImp implements RoomDAO {
 	}
 
 	@Override
-	public boolean isReserved(int id_room) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isReserved(int id_room) throws SQLException {
+		Connection con = DataBaseManager.getConnection();
+		PreparedStatement ps = con.prepareStatement(UPDATE_AVAILABILITY_ROOM);
+		ps.setInt(1, id_room);
+		
+		return ps.executeUpdate() > 0;
 	}
 
 }
