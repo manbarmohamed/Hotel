@@ -3,6 +3,7 @@ package com.hotel.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +11,16 @@ import com.hotel.modal.Reservation;
 import com.hotel.modal.Room;
 
 public class ReservationDAOImp implements ReservationDAO{
+	
+	String SELECT_RESERVATION_SQL="select * from reservation";
+	String SAVE_RESERVATION="INSERT INTO reservation (id_reservation, roomId, startDate, endDate) VALUES (?, ?, ?, ?)"; 
 
 	@Override
 	public List<Reservation> selectAllReservation() {
 					List<Reservation> reservations = new ArrayList<>();
 			try {
 				Connection cnx = DataBaseManager.getConnection();
-				PreparedStatement ps= cnx.prepareStatement("select * from reservation");
+				PreparedStatement ps= cnx.prepareStatement(SELECT_RESERVATION_SQL);
 				ResultSet rs= ps.executeQuery();
 				
 				while(rs.next()) {
@@ -32,6 +36,24 @@ public class ReservationDAOImp implements ReservationDAO{
 			}
 			return reservations;
 		}
+
+	@Override
+	public void saveReservation(Reservation reservation) throws SQLException {
+		Connection cnx = DataBaseManager.getConnection();
+		PreparedStatement ps= cnx.prepareStatement(SAVE_RESERVATION);
+		ps.setInt(1, reservation.getId_res());
+		ps.setInt(2,reservation.getRoomId());
+		ps.setString(3, reservation.getStartDate());
+		ps.setString(4, reservation.getEndDate());
+		ps.executeUpdate();
+		
+		
+	}
+
+	
+
+
+	
 	}
 
 	
