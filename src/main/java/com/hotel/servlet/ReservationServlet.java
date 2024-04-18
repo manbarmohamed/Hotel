@@ -1,7 +1,7 @@
 package com.hotel.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hotel.DAO.ReservationDAO;
 import com.hotel.DAO.ReservationDAOImp;
 import com.hotel.modal.Reservation;
 
@@ -17,7 +18,7 @@ import com.hotel.modal.Reservation;
 @WebServlet("/ReservationServlet")
 public class ReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	 
    
 
 	
@@ -26,6 +27,7 @@ public class ReservationServlet extends HttpServlet {
 		List<Reservation> reservations = reservationdao.selectAllReservation();
 		request.setAttribute("listreservation", reservations);
 		request.getRequestDispatcher("/Reservation.jsp").forward(request, response);
+		
 		
 	}
 

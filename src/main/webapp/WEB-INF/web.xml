@@ -27,4 +27,13 @@
     <servlet-name>ReservationServlet</servlet-name>
     <url-pattern>/res</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ReservationSuccessServlet</servlet-name>
+  	<servlet-class>com.hotel.servlet.ReservationSuccessServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservationSuccessServlet</servlet-name>
+    <url-pattern>/reservation</url-pattern>
+  </servlet-mapping>
 </web-app>

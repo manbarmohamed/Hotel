@@ -32,4 +32,10 @@ public class RoomDAOImp implements RoomDAO {
 		return rooms;
 	}
 
+	@Override
+	public boolean isReserved(int id_room) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
