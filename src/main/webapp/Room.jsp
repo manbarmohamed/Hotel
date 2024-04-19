@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<c:forEach var="room" items="${listrooms}">
     <p><c:out value="${room.getId_room()}"></c:out></p>
     <p><c:out value="${room.getType()}"></c:out></p>
