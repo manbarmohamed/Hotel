@@ -25,8 +25,9 @@ public class RoomDAOImp implements RoomDAO {
 			Double price = rs.getDouble("price");
 			String equipment = rs.getString("equipment");
 			Boolean availability = rs.getBoolean("availability");
+			String url_img= rs.getString("url_img");
 			
-			arrayRoom.add(new Room(id,type,price,equipment,availability));
+			arrayRoom.add(new Room(id,type,price,equipment,availability,url_img));
         }
     }
 	@Override
