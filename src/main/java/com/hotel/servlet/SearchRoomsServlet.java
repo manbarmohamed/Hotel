@@ -35,7 +35,7 @@ public class SearchRoomsServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-     	this.getServletContext().getRequestDispatcher("/SearchResult.jsp").forward(request, response);
+     	this.getServletContext().getRequestDispatcher("/SearchRooms.jsp").forward(request, response);
 	}
 
 }
