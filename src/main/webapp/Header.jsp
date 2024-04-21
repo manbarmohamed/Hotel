@@ -17,7 +17,7 @@
     </div>
     <ul class="navbar-nav d-flex flex-row gap-3">
       <li class="nav-item">
-        <a href="/Hotel/">Accueil</a>
+        <a href="/">Accueil</a>
       </li>
       <li class="nav-item">
         <a href="/Hotel/res">Chambres</a>

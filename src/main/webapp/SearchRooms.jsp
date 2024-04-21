@@ -8,76 +8,138 @@
 	<meta charset="UTF-8">
 	<title>Hotel Sunset Paradise</title>
 	<style><%@include file ="/CSS/header.css"%></style>
+		<style>
+.hotel-room-card {
+  display: flex;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.room-image {
+  flex: 0 0 40%;
+  overflow: hidden;
+}
+
+.room-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.room-details {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.room-type {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.room-description {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.room-features {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.room-features .feature {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.room-features .feature i {
+  margin-right: 5px;
+}
+
+.room-price {
+  display: flex;
+  align-items: baseline;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.room-price .price {
+  color: #007bff;
+  margin-right: 5px;
+}
+
+.room-price .per-night {
+  font-size: 16px;
+  color: #666;
+}
+
+.btn.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+</style>
+	
 	<!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style><%@include file ="/CSS/header.css"%></style>
+<style><%@include file ="/CSS/style.css"%></style>
+    
 </head>
 <body>
 <%@include file="/Header.jsp" %>
 <!-- Formulaire de recherche et de filtrage -->
-        <form action="search" method="POST" class="mb-3">
-            <div class="form-row">
-	            <div class="col-md-4 mb-3">
-	                    <label for="inputSearch">Search by id</label>
-	                    <input type="Number" class="form-control" id="inputSearch" name="inputSearch">
-	                </div>
-	            <div class="col-md-4 mb-3">
-						<label for="inputType">Filtre by type</label>
-							<select class="form-control" id="inputType" name="inputType">
-							    <!-- Options pour les postes -->
-							    <option value="">All Types</option>
-							    <option value="Suite">Suite</option>
-							    <option value="Single">Single</option>
-							    <option value="Double">Double</option>
-							</select>
-	                </div>
-	                <div class="col-md-4 mb-3">
-	                    <label for="inputCapacity">Filtre by CapacityCapacity</label>
-		                    <select class="form-control" id="inputCapacity" name="equipement">
-							    <!-- Options pour les départements -->
-							    <option value="">All Capacities</option>
-							    <option value="TV">TV</option>
-							    <option value="WIFI">WIFI</option>
-							    <option value="Jacuzzi">Jacuzzi</option>
-
-							</select>
-					</div>
-           		</div>
-            <button type="submit" class="btn btn-primary">Rechercher</button>
-        </form>
-<!-- Tableau pour afficher la liste des employés -->
-        
-        
-        
-        
-       
-       <section class="container mt-5">
-            <h2 class="text-center mb-4">Available Rooms</h2>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <!-- Room Cards - Dynamically Generated -->
-                <c:forEach var="room" items="${listrooms}">
-                    <div class="col">
-
-                        <div class="card">
-                            <img src="${room.getUrl_img()}" class="card-img-top" alt="${room.getType()}">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="card-title">${room.getType()}</h5>
-                                </div>
-                                <p class="card-text">${room.getPrice()}</p>
-                                <p class="card-text">${room.getEquipement() }</p>
-                                <p class="card-text">${room.getAvailability() ? "Yes" : "No"}</p>
-                                <button class="btn btn-dark view-details-btn" onclick="displayReoomDetails(${room.getId_room()})">Reserve</button>
-                                <button class="btn btn-dark view-details-btn" onclick="displayRoomDetails(${room.getId_room()})">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-        </section>
-       
-                <!-- Code JSP pour afficher la liste des employés -->
-       
-
+  <%@include file="/Home.jsp" %>    
+<!-- Tableau pour afficher la liste des employés --> 
+      <section class="container mt-5">  
+      <h1 class= "text-center ">Rooms Availablies</h1>
+       <c:forEach var="room" items="${listrooms}">
+		<div class="hotel-room-card my-3">
+		  <div class="room-image">
+		    <img src="${room.getUrl_img()}" alt="Room Image">
+		  </div>
+		  <div class="room-details">
+		    <h3 class="room-type">${room.getType()}</h3>
+		    <p class="room-description">${room.getDescription()}</p>
+		    <div class="room-features">
+		      <div class="feature">
+		        <i class="fas fa-bed"></i>
+		        <span>${room.getEquipement() }</span>
+		      </div>
+		      
+		    </div>
+		    <div class="room-price">
+		      <span class="price">${room.getPrice()} $</span>
+		      <span class="per-night">/night</span>
+		    </div>
+			<div class="d-flex justify-content-start w-100 gap-5">
+				    <a href="res?id=${room.getId_room()}?img=${room.getUrl_img()}?type=${room.getType()}" class="btn btn-primary w-25 mx-2" >Réserver</a>
+		    		<button class="btn btn-danger w-25">Cancel</button>
+			</div>
+		  </div>
+		</div>
+       </c:forEach>
+</section>
         <!-- Include Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

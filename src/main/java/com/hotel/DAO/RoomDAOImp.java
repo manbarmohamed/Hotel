@@ -11,9 +11,10 @@ import com.hotel.modal.Room;
 
 public class RoomDAOImp implements RoomDAO {
 	
-	String SELECT_ALL_ROOMS_AVAILABL= "select * from room";
+	String SELECT_ALL_ROOMS_AVAILABL= "select * from room ";
 	String UPDATE_AVAILABILITY_ROOM="UPDATE room SET availability = false WHERE id_room = ?";
-	String SEARCH_AVALAIBL_ROOMS="SELECT * FROM room WHERE id_room = ? OR type = ? OR equipment = ?";
+	String SEARCH_AVALAIBL_ROOMS="SELECT * FROM room WHERE availability=true and type=? or capacity=?";
+	String SEARCH_ROOMS_BY_DATE="SELECT * FROM room WHERE id_room IN (SELECT room_id FROM reservation WHERE startDate <= ? AND endDate >= ?)";
 	
 	
 	public static void statementRoom(List<Room> arrayRoom, PreparedStatement statement) throws SQLException {
@@ -26,8 +27,10 @@ public class RoomDAOImp implements RoomDAO {
 			String equipment = rs.getString("equipment");
 			Boolean availability = rs.getBoolean("availability");
 			String url_img= rs.getString("url_img");
+			String description = rs.getString("description");
+			int capacity = rs.getInt("capacity");
 			
-			arrayRoom.add(new Room(id,type,price,equipment,availability,url_img));
+			arrayRoom.add(new Room(id,type,price,equipment,availability,url_img,description,capacity));
         }
     }
 	@Override
@@ -50,7 +53,7 @@ public class RoomDAOImp implements RoomDAO {
 		return ps.executeUpdate() > 0;
 	}
 
-	@Override
+	/*@Override
 	public List<Room> searchAvailableRoom(Integer roomId, String roomType, String equipement)
 			throws SQLException {
 		List<Room> arrayRoom = new ArrayList<>();
@@ -63,5 +66,30 @@ public class RoomDAOImp implements RoomDAO {
         statementRoom(arrayRoom,statement);
 		return arrayRoom;
 
-}
+}*/
+	@Override
+	public List<Room> searchRoomByTypeCapacity(String type, Integer capacity) throws SQLException {
+		List<Room> arrayRoom = new ArrayList<>();
+		Connection connection = DataBaseManager.getConnection();       
+        PreparedStatement statement = connection.prepareStatement(SEARCH_AVALAIBL_ROOMS);
+        
+        statement.setString(1, type);
+        statement.setInt(2,capacity);
+        
+
+        statementRoom(arrayRoom,statement);
+		
+		return arrayRoom;
+	}
+	@Override
+	public List<Room> searchRoomByDate(String startDate, String endDate) throws SQLException {
+		List<Room> arrayRoom = new ArrayList<>();
+		Connection connection = DataBaseManager.getConnection();       
+        PreparedStatement statement = connection.prepareStatement(SEARCH_ROOMS_BY_DATE);
+        
+        statement.setString(1, startDate);
+        statement.setString(2, endDate);
+        statementRoom(arrayRoom,statement);
+		return arrayRoom;
+	}
 	}

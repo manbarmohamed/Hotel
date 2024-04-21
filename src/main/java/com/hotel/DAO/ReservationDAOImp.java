@@ -45,7 +45,7 @@ public class ReservationDAOImp implements ReservationDAO{
 	public void saveReservation(Reservation reservation) throws SQLException {
 		Connection cnx = DataBaseManager.getConnection();
 		PreparedStatement ps= cnx.prepareStatement(SAVE_RESERVATION);
-		ps.setInt(1, reservation.getId_res());
+		
 		ps.setInt(2,reservation.getRoomId());
 		ps.setString(3, reservation.getStartDate());
 		ps.setString(4, reservation.getEndDate());

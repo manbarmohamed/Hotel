@@ -24,7 +24,7 @@ public class SearchResult extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RoomDAOImp roomDAOImp = new RoomDAOImp();
 		try {
-			request.setAttribute("arrayRoom", roomDAOImp.selectAllRom());
+			request.setAttribute("listrooms", roomDAOImp.selectAllRom());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
