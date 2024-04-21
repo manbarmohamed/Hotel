@@ -15,7 +15,7 @@ public class ReservationDAOImp implements ReservationDAO{
 	private RoomDAO roomdao;
 	
 	String SELECT_RESERVATION_SQL="select * from reservation";
-	String SAVE_RESERVATION="INSERT INTO reservation (id_reservation, roomId, startDate, endDate) VALUES (?, ?, ?, ?)"; 
+	String SAVE_RESERVATION="INSERT INTO reservation ( roomId, startDate, endDate) VALUES ( ?, ?, ?)"; 
 	String CANCEL_RESERVATION ="DELETE FROM reservation WHERE id_reservation=?";
 
 	@Override
@@ -27,12 +27,12 @@ public class ReservationDAOImp implements ReservationDAO{
 				ResultSet rs= ps.executeQuery();
 				
 				while(rs.next()) {
-					int id_res = rs.getInt("id_reservation");
+					
 					int id_rom = rs.getInt("roomId");
 					String startDate = rs.getDate("startDate").toString();
 					String endDate = rs.getString("endDate").toString();
 					
-					reservations.add(new Reservation(id_res,id_rom,startDate,endDate));
+					reservations.add(new Reservation(id_rom,startDate,endDate));
 					
 				}
 			} catch (Exception e) {
@@ -46,9 +46,9 @@ public class ReservationDAOImp implements ReservationDAO{
 		Connection cnx = DataBaseManager.getConnection();
 		PreparedStatement ps= cnx.prepareStatement(SAVE_RESERVATION);
 		
-		ps.setInt(2,reservation.getRoomId());
-		ps.setString(3, reservation.getStartDate());
-		ps.setString(4, reservation.getEndDate());
+		ps.setInt(1,reservation.getRoomId());
+		ps.setString(2, reservation.getStartDate());
+		ps.setString(3, reservation.getEndDate());
 		ps.executeUpdate();
 		roomdao = new RoomDAOImp();
 		roomdao.isReserved(reservation.getRoomId());

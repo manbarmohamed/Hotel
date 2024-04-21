@@ -144,13 +144,17 @@
 		      <span class="per-night">/night</span>
 		    </div>
 			<div class="d-flex justify-content-start w-100 gap-5">
-				    <a href="res?id=${room.getId_room()}?img=${room.getUrl_img()}?type=${room.getType()}" class="btn btn-primary w-25 mx-2" >Réserver</a>
+				    <a href="res?id=${room.getId_room()}" class="btn btn-primary w-25 mx-2" >Réserver</a>
 		    		<button class="btn btn-danger w-25">Cancel</button>
 			</div>
 		  </div>
 		</div>
        </c:forEach>
 </section>
+
+
+<%@include file="/Contact.jsp" %>
+<%@include file="/Footer.jsp" %> 
         <!-- Include Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

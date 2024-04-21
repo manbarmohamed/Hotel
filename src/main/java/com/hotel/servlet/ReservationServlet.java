@@ -26,9 +26,29 @@ public class ReservationServlet extends HttpServlet {
 		ReservationDAOImp reservationdao = new ReservationDAOImp();
 		List<Reservation> reservations = reservationdao.selectAllReservation();
 		request.setAttribute("listreservation", reservations);
-		request.getRequestDispatcher("/Reservation.jsp").forward(request, response);
+		/*Integer id = Integer.valueOf(request.getParameter("id"));
+		System.out.print(id);
+		request.setAttribute("roomId", id);*/
 		
 		
+		 String idParameter = request.getParameter("id");
+	        if (idParameter != null) {
+	            try {
+	                // Conversion du paramètre "id" en Integer
+	                Integer id = Integer.valueOf(idParameter);
+
+	                // Affichage de l'ID dans la console (pour le débogage)
+	                System.out.print(id);
+
+	                // Ajout de l'ID en tant qu'attribut de la requête
+	                request.setAttribute("roomId", id);
+	            } catch (NumberFormatException e) {
+	                // Gestion des cas où le paramètre "id" n'est pas un entier valide
+	                // Vous pouvez logger une erreur ou gérer cette exception selon les besoins de votre application
+	                e.printStackTrace();
+	            }
+	        }
+	        request.getRequestDispatcher("/Reservation.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

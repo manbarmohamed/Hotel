@@ -23,7 +23,7 @@
         <a href="#rooom">Rooms</a>
       </li>
       <li class="nav-item">
-        <a href="#">About Us</a>
+        <a href="#aboutus">About Us</a>
       </li>
       <li class="nav-item">
         <a href="/Hotel/res">Reservation</a>
