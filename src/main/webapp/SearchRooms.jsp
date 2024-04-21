@@ -110,7 +110,16 @@
 <%@include file="/Header.jsp" %>
 <!-- Formulaire de recherche et de filtrage -->
   <%@include file="/Home.jsp" %>    
-<!-- Tableau pour afficher la liste des employés --> 
+
+<form action="search" method="POST"   class="d-flex align-items-center">
+
+         <input  type="text" id="roomType" name="type" placeholder="Type de Chambre" required class="form-control mx-2">
+         <input  type="text" id="roomCapacity" name="capacity" placeholder="Type de Chambre" required class="form-control mx-2">
+         
+         <input type="submit" value="Search" class="btn btn-primary buttoncolor">
+    </form>
+
+		
       <section class="container mt-5">  
       <h1 class= "text-center ">Rooms Availablies</h1>
        <c:forEach var="room" items="${listrooms}">
