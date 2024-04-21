@@ -11,7 +11,7 @@ import com.hotel.modal.Room;
 
 public class RoomDAOImp implements RoomDAO {
 	
-	String SELECT_ALL_ROOMS_AVAILABL= "select * from room ";
+	String SELECT_ALL_ROOMS_AVAILABL= "select * from room where availability = true";
 	String UPDATE_AVAILABILITY_ROOM="UPDATE room SET availability = false WHERE id_room = ?";
 	String SEARCH_AVALAIBL_ROOMS="SELECT * FROM room WHERE availability=true and type=? and capacity=?";
 	String SEARCH_ROOMS_BY_DATE="SELECT * FROM room WHERE id_room IN (SELECT room_id FROM reservation WHERE startDate <= ? AND endDate >= ?)";

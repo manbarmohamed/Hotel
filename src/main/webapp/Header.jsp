@@ -13,20 +13,20 @@
 	<header>
   <nav class="navbar">
     <div class="navbar-brand">
-      <a href="#">Hôtel Luxe</a>
+      <a href="#">Manbar Hotel Group's</a>
     </div>
     <ul class="navbar-nav d-flex flex-row gap-3">
       <li class="nav-item">
-        <a href="/">Accueil</a>
+        <a href="/Hotel/">Home</a>
       </li>
       <li class="nav-item">
-        <a href="/Hotel/res">Chambres</a>
+        <a href="#rooom">Rooms</a>
       </li>
       <li class="nav-item">
-        <a href="#">Services</a>
+        <a href="#">About Us</a>
       </li>
       <li class="nav-item">
-        <a href="#">À propos</a>
+        <a href="/Hotel/res">Reservation</a>
       </li>
       <li class="nav-item">
         <a href="#">Contact</a>
