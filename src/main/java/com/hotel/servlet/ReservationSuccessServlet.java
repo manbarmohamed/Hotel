@@ -22,7 +22,7 @@ public class ReservationSuccessServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id_Room = Integer.parseInt(request.getParameter("roomId"));
+		Integer id_Room = Integer.valueOf(request.getParameter("roomId"));
 		int id_Res = Integer.parseInt(request.getParameter("id_res"));
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");	

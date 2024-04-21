@@ -109,7 +109,9 @@
 <body>
 <%@include file="/Header.jsp" %>
 <!-- Formulaire de recherche et de filtrage -->
-  <%@include file="/Home.jsp" %>    
+  <%@include file="/Home.jsp" %>  
+      <%@include file="/About.jsp" %>  
+    
 
 <form action="search" method="POST"   class="d-flex align-items-center">
 
@@ -121,7 +123,7 @@
 
 		
       <section class="container mt-5">  
-      <h1 class= "text-center ">Rooms Availablies</h1>
+      <h1 class= "text-center " id="rooom">Rooms Availablies</h1>
        <c:forEach var="room" items="${listrooms}">
 		<div class="hotel-room-card my-3">
 		  <div class="room-image">
