@@ -115,8 +115,8 @@
 
 <form action="search" method="POST"   class="d-flex align-items-center">
 
-         <input  type="text" id="roomType" name="type" placeholder="Type de Chambre" required class="form-control mx-2">
-         <input  type="text" id="roomCapacity" name="capacity" placeholder="Type de Chambre" required class="form-control mx-2">
+         <input  type="text" id="roomType" name="type" placeholder="Type de Chambre"  class="form-control mx-2">
+         <input  type="text" id="roomCapacity" name="capacity" placeholder="Type de Chambre"  class="form-control mx-2">
          
          <input type="submit" value="Search" class="btn btn-primary buttoncolor">
     </form>

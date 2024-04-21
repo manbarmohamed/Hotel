@@ -29,6 +29,9 @@
         <a href="/Hotel/res">Reservation</a>
       </li>
       <li class="nav-item">
+        <a href="/Hotel/hes">History</a>
+      </li>
+      <li class="nav-item">
         <a href="#">Contact</a>
       </li>
     </ul>

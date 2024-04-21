@@ -2,6 +2,7 @@ package com.hotel.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hotel.DAO.RoomDAOImp;
+import com.hotel.modal.Room;
 
 
 @WebServlet("/SearchRoomsServlet")
@@ -24,18 +26,25 @@ public class SearchRoomsServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RoomDAOImp roomDAOImp = new RoomDAOImp();
-		/*String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");*/
 		String type = request.getParameter("type");
-		Integer capacity = Integer.valueOf( request.getParameter("capacity"));
-     
-     	try {
-			request.setAttribute("listrooms", roomDAOImp.searchRoomByTypeCapacity( type , capacity));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String capacityParam = request.getParameter("capacity");
+
+		if (type != null && !type.isEmpty() && capacityParam != null && !capacityParam.isEmpty()) {
+		    try {
+		        Integer capacity = Integer.valueOf(capacityParam);
+		        List<Room> rooms = roomDAOImp.searchRoomByTypeCapacity(type, capacity);
+		        request.setAttribute("listrooms", rooms);
+		    } catch (NumberFormatException | SQLException e) {
+		        // Handle NumberFormatException and SQLException appropriately
+		        e.printStackTrace();
+		    }
+		} else {
+		    // Handle missing or empty parameters
+		    // You can redirect the user to an error page or display a message
 		}
-     	this.getServletContext().getRequestDispatcher("/SearchRooms.jsp").forward(request, response);
+
+		request.getRequestDispatcher("/SearchRooms.jsp").forward(request, response);
+
 	}
 
 }

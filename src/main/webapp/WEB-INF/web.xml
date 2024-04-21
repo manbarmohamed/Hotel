@@ -38,4 +38,13 @@
     <servlet-name>SearchRoomsServlet</servlet-name>
     <url-pattern>/search</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Reservation_history</servlet-name>
+  	<servlet-class>com.hotel.servlet.Reservation_history</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Reservation_history</servlet-name>
+    <url-pattern>/hes</url-pattern>
+  </servlet-mapping>
 </web-app>
