@@ -10,7 +10,13 @@ public class Reservation {
     
     
     
-    public Reservation() {
+    public Reservation(int roomId, String startDate, String endDate) {
+		super();
+		this.roomId = roomId;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+	public Reservation() {
 		super();
 	}
 	public Reservation(int id_res, int roomId, String startDate, String endDate) {

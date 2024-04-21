@@ -24,14 +24,13 @@ public class SearchRoomsServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RoomDAOImp roomDAOImp = new RoomDAOImp();
-        Integer inputId = Integer.valueOf(request.getParameter("inputSearch"));
-        String inputType = request.getParameter("inputType");
-        String inputCapacity = request.getParameter("equipement");
-        System.out.println(inputId);
-        System.out.println(inputType);
-        System.out.println(inputCapacity);
+		/*String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");*/
+		String type = request.getParameter("type");
+		Integer capacity = Integer.valueOf( request.getParameter("capacity"));
+     
      	try {
-			request.setAttribute("arrayRoom", roomDAOImp.searchAvailableRoom(inputId, inputType, inputCapacity));
+			request.setAttribute("listrooms", roomDAOImp.searchRoomByTypeCapacity( type , capacity));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
