@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hotel.DAO.ReservationDAO;
 import com.hotel.DAO.ReservationDAOImp;
+import com.hotel.DAO.RoomDAOImp;
 import com.hotel.modal.Reservation;
 
 
@@ -23,10 +24,9 @@ public class ReservationSuccessServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer id_Room = Integer.valueOf(request.getParameter("roomId"));
-		int id_Res = Integer.parseInt(request.getParameter("id_res"));
-		String startDate = request.getParameter("startDate");
+				String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");	
-		Reservation reservation = new Reservation(id_Res,id_Room,startDate,endDate);
+		Reservation reservation = new Reservation(id_Room,startDate,endDate);
 		
 			reservationDAO = new ReservationDAOImp(); // Assume dataSource is configured
 			try {
@@ -34,9 +34,16 @@ public class ReservationSuccessServlet extends HttpServlet {
 			} catch (SQLException e) {
 					e.printStackTrace();
 			}
-			
+			RoomDAOImp roomDAOImp = new RoomDAOImp();
+		    try {
+				request.setAttribute("listrooms", roomDAOImp.selectAllRom());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		    request.getRequestDispatcher("/SearchRooms.jsp").forward(request, response);
 
-	        response.sendRedirect("reservation-success.jsp");
+	        //response.sendRedirect("SearchRooms.jsp");
 	}
 
 	

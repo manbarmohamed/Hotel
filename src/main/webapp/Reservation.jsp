@@ -31,9 +31,9 @@
     <input type="date" id="check-out-date" name="startDate" required>
   </div>      
    
-  <div class="form-group">
+  <div class="form-group" style="display:none">
     <label for="roomId">Room ID: </label>
-    <input type="text" id="name" name="roomId" required>
+    <input type="text" id="name" name="roomId" value="${roomId}" readonly>
   </div>
   
   
@@ -42,7 +42,7 @@
 </form>
     </div>
     
-    
+    <%@include file="/Footer.jsp" %>
             <!-- Include Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
