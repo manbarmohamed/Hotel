@@ -25,11 +25,7 @@ public class ReservationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReservationDAOImp reservationdao = new ReservationDAOImp();
 		List<Reservation> reservations = reservationdao.selectAllReservation();
-		request.setAttribute("listreservation", reservations);
-		/*Integer id = Integer.valueOf(request.getParameter("id"));
-		System.out.print(id);
-		request.setAttribute("roomId", id);*/
-		
+		request.setAttribute("listreservation", reservations);	
 		
 		 String idParameter = request.getParameter("id");
 	        if (idParameter != null) {

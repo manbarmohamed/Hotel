@@ -27,7 +27,7 @@ public class ReservationDAOImp implements ReservationDAO{
 				ResultSet rs= ps.executeQuery();
 				
 				while(rs.next()) {
-					
+					int id_res = rs.getInt("id_reservation");
 					int id_rom = rs.getInt("roomId");
 					String startDate = rs.getDate("startDate").toString();
 					String endDate = rs.getString("endDate").toString();
@@ -55,11 +55,7 @@ public class ReservationDAOImp implements ReservationDAO{
 		
 	}
 
-	@Override
-	public void cancelReservation(int id) throws SQLException {
-		
-		
-	}
+	
 
 	
 
